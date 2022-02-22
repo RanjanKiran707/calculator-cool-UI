@@ -1,0 +1,13 @@
+{
+    "files.exclude": {
+        ".*": true,
+        "./test": true,
+        "*.iml": true,
+        "ios/": true,
+        "pubspec.lock": true,
+        "README.md": true,
+        "test/": true,
+        "web/": true,
+        "windows/": true
+    }
+}
