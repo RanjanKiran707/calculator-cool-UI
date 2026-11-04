@@ -24,7 +24,20 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <!-- Favicon & Tab Icon -->
+  <link rel="icon" type="image/png" sizes="64x64" href="calc_icon.png?v=2"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="calc_icon.png?v=2"/>
+  <link rel="shortcut icon" type="image/png" href="calc_icon.png?v=2"/>
+  <script>
+    // Ensure browser tab updates favicon immediately
+    (function() {
+      var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+      link.type = 'image/png';
+      link.rel = 'shortcut icon';
+      link.href = 'calc_icon.png?v=' + Date.now();
+      document.head.appendChild(link);
+    })();
+  </script>
 
   <title>Calculator Cool UI</title>
   <link rel="manifest" href="manifest.json">
