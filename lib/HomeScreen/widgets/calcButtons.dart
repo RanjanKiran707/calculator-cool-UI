@@ -1,12 +1,11 @@
 import 'package:calculator/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class CalcButton extends StatelessWidget {
   final String text;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
-  CalcButton({Key key, this.text, this.textStyle}) : super(key: key);
+  const CalcButton({super.key, required this.text, this.textStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class CalcButton extends StatelessWidget {
       elevation: 0,
       child: TextButton(
         style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -34,18 +33,23 @@ class CalcButton extends StatelessWidget {
 }
 
 class CalcButtons extends StatefulWidget {
+  const CalcButtons({super.key});
+
   @override
-  _CalcButtonsState createState() => _CalcButtonsState();
+  State<CalcButtons> createState() => _CalcButtonsState();
 }
 
 class _CalcButtonsState extends State<CalcButtons> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
-        color: context.accentColor,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(50)),
+        color: theme.colorScheme.secondary,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
       ),
       child: GridView.count(
         primary: true,
@@ -55,13 +59,13 @@ class _CalcButtonsState extends State<CalcButtons> {
         children: List.generate(
           numsAndOps.length,
           (index) {
-            TextStyle textStyle;
+            TextStyle? textStyle;
             if (index < 3) {
-              textStyle = context.textTheme.subtitle1;
+              textStyle = textTheme.titleMedium;
             } else if (index == 3 || index == 7 || index == 11 || index == 15 || index == 19) {
-              textStyle = context.textTheme.subtitle2;
+              textStyle = textTheme.titleLarge;
             } else {
-              textStyle = context.textTheme.button;
+              textStyle = textTheme.labelLarge;
             }
             return CalcButton(text: numsAndOps[index], textStyle: textStyle);
           },
@@ -71,7 +75,7 @@ class _CalcButtonsState extends State<CalcButtons> {
   }
 }
 
-List<String> numsAndOps = [
+const List<String> numsAndOps = [
   "AC",
   "\u00B1",
   "%",

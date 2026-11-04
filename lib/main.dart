@@ -6,23 +6,18 @@ import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIOverlays([]);
-  runApp(MyApp());
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode themeMode = ThemeMode.dark;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<ThemeMode>(
@@ -30,11 +25,12 @@ class _MyAppState extends State<MyApp> {
       stream: Bloc().themeModeStrmController.stream,
       builder: (context, snapshot) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           darkTheme: MyTheme.darkTheme,
           theme: MyTheme.lightTheme,
           themeMode: snapshot.data,
           title: "Calculator",
-          home: HomeScreen(),
+          home: const HomeScreen(),
         );
       },
     );

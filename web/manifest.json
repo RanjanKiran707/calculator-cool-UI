@@ -1,11 +1,11 @@
 {
-    "name": "calculator",
-    "short_name": "calculator",
+    "name": "Calculator Cool UI",
+    "short_name": "Calculator",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#22252D",
+    "theme_color": "#22252D",
+    "description": "A modern calculator with smooth theme switching animation.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
